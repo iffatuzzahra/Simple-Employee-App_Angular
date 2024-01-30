@@ -1,0 +1,38 @@
+<div class="card m-2 p-2">
+    <h1>Employee Detail</h1>
+    <table>
+        <tr>
+            <td>Username :</td>
+            <td>{{employee.username}}</td>
+        </tr>
+        <tr>
+            <td>Name :</td>
+            <td>{{employee.firstName}} {{employee.lastName}}</td>
+        </tr>
+        <tr>
+            <td>Email :</td>
+            <td>{{employee.email}}</td>
+        </tr>
+        <tr>
+            <td>Birth Date :</td>
+            <td>{{employee.birthDate | date : "dd MMMM yyyy"}}</td>
+        </tr>
+        <tr>
+            <td>Basic Salary :</td>
+            <td>{{employee.basicSalary | currency : "Rp"}}</td>
+        </tr>
+        <tr>
+            <td>Status :</td>
+            <td>{{employee.status}}</td>
+        </tr>
+        <tr>
+            <td>Group :</td>
+            <td>{{employee.group}}</td>
+        </tr>
+        <tr>
+            <td>Description :</td>
+            <td>{{employee.description}}</td>
+        </tr>
+    </table>
+</div>
+<button class="btn btn-info ms-2" (click)="onBackClick()">Kembali</button>

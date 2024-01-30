@@ -1,0 +1,6 @@
+.nav-item:hover {
+    font-weight: bold;
+}
+.hov-danger:hover {
+    color: rgb(210, 0, 0);
+}

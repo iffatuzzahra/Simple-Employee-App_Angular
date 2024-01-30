@@ -1,0 +1,102 @@
+<h1 *ngIf="urlParam === '__add'">Add Employee</h1>
+<h1 *ngIf="urlParam !== '__add'">Update Employee</h1>
+<div class="container">
+    <form [formGroup]="upsertForm" (submit)="onSubmit()">
+        <input type="hidden" class="form-control col-sm-10" 
+                *ngIf="urlParam !== '__add'" formControlName="id"/>
+        <div class="input-group mb-2">
+            <label class="col-sm-2 col-form-label" for="username">Username</label>
+            <input type="text" class="form-control col-sm-10" 
+                formControlName="username"/>
+        </div>
+        <div class="alert alert-danger mt-1 col-sm-10" *ngIf="upsertForm.controls['username'].touched && !upsertForm.controls['username'].valid">
+            <span>Please input username</span>
+        </div>
+        <div class="input-group mb-2">
+            <label class="col-sm-2 col-form-label" for="firstName">First Name</label>
+            <input type="text" class="form-control col-sm-10" 
+                formControlName="firstName"/>
+        </div>
+        <div class="alert alert-danger mt-1 col-sm-10" *ngIf="upsertForm.controls['firstName'].touched && !upsertForm.controls['firstName'].valid">
+            <span>Please input first name</span>
+        </div>
+        <div class="input-group mb-2">
+            <label class="col-sm-2 col-form-label" for="lastName">Last Name</label>
+            <input type="text" class="form-control col-sm-10" 
+                formControlName="lastName"/>
+        </div>
+        <div class="alert alert-danger mt-1 col-sm-10" *ngIf="upsertForm.controls['lastName'].touched && !upsertForm.controls['lastName'].valid">
+            <span>Please input last name</span>
+        </div>
+        <div class="input-group mb-2">
+            <label class="col-sm-2 col-form-label" for="email">Email</label>
+            <input type="email" class="form-control col-sm-10"
+                formControlName="email">
+        </div>
+        <div class="alert alert-danger mt-1 col-sm-10" *ngIf="upsertForm.controls['email'].touched && !upsertForm.controls['email'].valid">
+            <span *ngIf="upsertForm.controls['email'].errors?.['required']">Please input email</span>
+            <span *ngIf="upsertForm.controls['email'].errors?.['email']">Please type correct email format</span>
+        </div>
+        <div class="input-group mb-2">
+            <label class="col-sm-2 col-form-label" for="birthDate">Birtd Date</label>
+            <input type="date" class="form-control col-sm-10"
+                formControlName="birthDate">
+        </div>
+        <div class="alert alert-danger mt-1 col-sm-10" *ngIf="upsertForm.controls['birthDate'].touched && !upsertForm.controls['birthDate'].valid">
+            <span *ngIf="upsertForm.controls['birthDate'].errors?.['required']">Please input birth date </span>
+            <span *ngIf="upsertForm.controls['birthDate'].errors?.['maxDate']">Please input the correct birth date</span>
+        </div>
+        <div class="input-group mb-2">
+            <label class="col-sm-2 col-form-label" for="basicSalary">Basic Salary</label>
+            <input type="number" class="form-control col-sm-10"
+                formControlName="basicSalary">
+        </div>
+        <div class="alert alert-danger mt-1 col-sm-10" *ngIf="upsertForm.controls['basicSalary'].touched && !upsertForm.controls['basicSalary'].valid">
+            <span *ngIf="upsertForm.controls['basicSalary'].errors?.['required']">Please input basic salary</span>
+            <span *ngIf="upsertForm.controls['basicSalary'].errors?.['min']">Salary should more than Rp 10.000</span>
+            <span *ngIf="upsertForm.controls['basicSalary'].errors?.['max']">Salary should less than Rp 10.000.000.000</span>
+        </div>
+        <div class="input-group mb-2">
+            <label class="col-sm-2 col-form-label" for="status">Status</label>
+            <!-- <input type="number" class="form-control col-sm-10"
+                formControlName="status"> -->
+            <select class="form-select col-sm-10" formControlName="status">
+                <option *ngFor="let option of statusList" 
+                        [value]="option.value" 
+                        [selected]="option.value == selectedStatus">
+                    {{ option.text }}
+                </option>
+            </select>
+        </div>
+        <div class="alert alert-danger mt-1 col-sm-10" *ngIf="upsertForm.controls['status'].touched && !upsertForm.controls['status'].valid">
+            <span *ngIf="upsertForm.controls['status'].errors?.['required']">Please input status</span>
+            <span *ngIf="upsertForm.controls['status'].errors?.['min']">Salary cant be negative</span>
+        </div>
+        <div class="input-group mb-2">
+            <label class="col-sm-2 col-form-label" for="group">Group</label>
+            <select class="form-select col-sm-10" formControlName="group">
+                <!-- <option value="" selected>{{upsertForm.get('group')}}</option> -->
+                <option *ngFor="let option of groupList" 
+                        [value]="option" 
+                        [selected]="option == selectedGroup">
+                    {{ option }}
+                </option>
+            </select>
+        </div>
+        <div class="alert alert-danger mt-1 col-sm-10" *ngIf="upsertForm.controls['group'].touched && !upsertForm.controls['group'].valid">
+            <span>Please select group</span>
+        </div>
+        <div class="input-group mb-2">
+            <label class="col-sm-2 col-form-label" for="description">Description</label>
+            <input type="text" class="form-control col-sm-10"
+                formControlName="description">
+        </div>
+        <div class="alert alert-danger mt-1 col-sm-10" *ngIf="upsertForm.controls['description'].touched && !upsertForm.controls['description'].valid">
+            <span>Please input description</span>
+        </div>
+        <div>
+            <button type="submit" class="btn btn-primary my-2" [disabled]="upsertForm.invalid">Submit</button>
+            <button type="button" class="btn btn-danger ms-1" (click)="onCancel()">Cancel</button>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,17 @@
+<nav>
+    <div class="navbar navbar-expand-sm navbar-light bg-light">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <a class="navbar-brand" routerLink="/">Employee App</a>
+            <li class="nav-item" routerLink="/">
+                <a class="nav-link " routerLink="/">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="['add-employee', '__add']">Add Employee</a>
+            </li>
+            <li class="nav-item">
+                <button class="nav-link hov-danger" (click)="logout()">Logout</button>
+            <li class="nav-item">
+        </ul>
+    </div>
+</nav>
+<router-outlet></router-outlet>

@@ -1,0 +1,66 @@
+<div class="row-form-parent">
+  <div class="row-form col-2">
+    <label for="itemsPerPageDropdown" class="col-7">Items per Page:</label>
+    <select class="form-select" aria-label="Default select example"
+      [(ngModel)]="pageInfo.dataPerPage" 
+      (change)="onDataPerPageChange()">
+        <option *ngFor="let option of dataPerPageOptions" 
+        [value]="option" 
+        [selected]="option == pageInfo.dataPerPage">
+          {{ option }}
+        </option>
+    </select>
+  </div>
+  <div>
+    <form class="row-form">
+      <input class="form-control" type="text" placeholder="search" #search>
+      <button class="btn btn-success" (click)="onSearch(search.value)">Search</button>
+    </form>
+  </div>
+</div>
+
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Action</th>
+        <th scope="col" (click)="sortByName()">Full Name</th>
+        <th scope="col" (click)="sortByEmail()">Email</th>
+        <th scope="col" (click)="sortByGroup()">Group</th>
+        <th scope="col" (click)="sortByBasicSalary()">Basic Salary</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of employeesPerPage">
+        <td>
+          <button class="btn btn-info" (click)="getDetailEmployee(item.id)">Detail</button>
+          <button class="btn btn-warning mx-1" (click)="updateEmployee(item.id)">Edit</button>
+          <button class="btn btn-danger" (click)="deleteEmployee(item.id)">Delete</button>
+        </td>
+        <td>{{item.firstName}} {{item.lastName}}</td>
+        <td>{{item.email}}</td>
+        <td>{{item.group}}</td>
+        <td>{{item.basicSalary | currency: "Rp"}}</td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="5">
+          <ul class="pagination justify-content-center">
+            <li class="page-item" [ngClass]="pageInfo.page === 1 ? 'disabled' : ''">
+              <button class="page-link" (click)="onChangePage(pageInfo.page - 1)">Previous</button>
+            </li>
+              <span *ngFor="let page of pageInfo.totalPage">
+                <li class="page-item">
+                  <button class="page-link" (click)="onChangePage(page)" [ngClass]="page === pageInfo.page ? 'disabled': ''" >
+                    {{page}}
+                  </button>
+                </li>
+              </span>
+              <li class="page-item" [ngClass]="pageInfo.page === pageInfo.totalPage.length ? 'disabled' : ''">
+                <button class="page-link" (click)="onChangePage(pageInfo.page + 1)">Next</button>
+              </li>
+            </ul>
+        </td>
+      </tr>
+    </tfoot>
+</table>
