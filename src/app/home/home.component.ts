@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HomeService } from './home.service';
 import { Router } from '@angular/router';
+import { getLocaleId } from '@angular/common';
 
 @Component({
   selector: 'app-home',
@@ -23,7 +24,6 @@ export class HomeComponent implements OnInit {
     name: 'desc', 
     email: 'desc', 
     group: 'desc', 
-    brithDate: 'desc', 
     salary: 'desc'
   }
 
@@ -45,9 +45,13 @@ export class HomeComponent implements OnInit {
         }
         if (this.employees.length > 0) {
           this.pageInfo.totalPage = new Array(Math.ceil(this.employees.length / this.pageInfo.dataPerPage)).fill(0).map((_, index) => index + 1);
+          this.sortByBasicSalary();
+          this.sortByGroup();
+          this.sortByEmail();
+          this.sortByName();
           this.sliceEmployeeData();
         } else {
-          alert('no data found');
+          alert('No data found');
         }
       }, 
       error: (error) => {

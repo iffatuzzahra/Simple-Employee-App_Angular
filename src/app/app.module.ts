@@ -20,6 +20,7 @@ import { LoginGuard } from './login.guard';
 import { FormEmployeeComponent } from './form-employee/form-employee.component';
 import { FormEmployeeService } from './form-employee/form-employee.service';
 import { StatusService } from './services/status.service';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { StatusService } from './services/status.service';
     NgbModule, 
     FormsModule, 
     ReactiveFormsModule, 
-    HttpClientModule
+    HttpClientModule, 
+    FontAwesomeModule
   ],
   providers: [
     DataService,

@@ -12,9 +12,10 @@
     </select>
   </div>
   <div>
-    <form class="row-form">
-      <input class="form-control" type="text" placeholder="search" #search>
-      <button class="btn btn-success" (click)="onSearch(search.value)">Search</button>
+    <form class="row-form" id="form-search">
+      <input class="form-control"  type="text" placeholder="search" #search>
+      <i class="fas fa-regular fa-rectangle-xmark float-button" (click)="search.value = ''"></i>
+      <button class="btn btn-success" (click)="onSearch(search.value)"><i class="fas fa-solid fa-magnifying-glass"></i></button>
     </form>
   </div>
 </div>
@@ -23,10 +24,22 @@
     <thead>
       <tr>
         <th scope="col">Action</th>
-        <th scope="col" (click)="sortByName()">Full Name</th>
-        <th scope="col" (click)="sortByEmail()">Email</th>
-        <th scope="col" (click)="sortByGroup()">Group</th>
-        <th scope="col" (click)="sortByBasicSalary()">Basic Salary</th>
+        <th scope="col" (click)="sortByName()">
+          <i class="fas" [ngClass]="sortDirection.name === 'desc'? 'fa-caret-down' : 'fa-caret-up'"></i>
+          <span class="mx-1">Full Name</span>
+        </th>
+        <th scope="col" (click)="sortByEmail()">
+          <i class="fas" [ngClass]="sortDirection.email === 'desc'? 'fa-caret-down' : 'fa-caret-up'"></i>
+          <span class="mx-1">Email</span>
+        </th>
+        <th scope="col" (click)="sortByGroup()">
+          <i class="fas" [ngClass]="sortDirection.group === 'desc'? 'fa-caret-down' : 'fa-caret-up'"></i>
+          <span class="mx-1">Group</span>
+        </th>
+        <th scope="col" (click)="sortByBasicSalary()">
+          <i class="fas" [ngClass]="sortDirection.salary === 'desc'? 'fa-caret-down' : 'fa-caret-up'"></i>
+          <span class="mx-1">Basic Salary</span>
+        </th>
       </tr>
     </thead>
     <tbody>

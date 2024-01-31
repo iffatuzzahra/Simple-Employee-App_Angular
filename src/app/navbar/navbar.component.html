@@ -3,14 +3,20 @@
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <a class="navbar-brand" routerLink="/">Employee App</a>
             <li class="nav-item" routerLink="/">
-                <a class="nav-link " routerLink="/">Home</a>
+                <a class="nav-link " routerLink="/">
+                    <i class="fas fa-users"></i> <span class="mx-1">Home</span>
+                </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" [routerLink]="['add-employee', '__add']">Add Employee</a>
+                <a class="nav-link" [routerLink]="['add-employee', '__add']">
+                    <i class="fas fa-user-plus"></i> <span class="mx-1">Add Employee</span>
+                </a>
             </li>
             <li class="nav-item">
-                <button class="nav-link hov-danger" (click)="logout()">Logout</button>
-            <li class="nav-item">
+                <a class="nav-link hov-danger" (click)="logout()">
+                    <i class="fas fa-power-off"></i> <span class="mx-1">Logout</span>
+                </a>
+            </li>
         </ul>
     </div>
 </nav>

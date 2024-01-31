@@ -18,3 +18,11 @@
 .form-select {
     min-width: 5rem;
 }
+.float-button{
+    position:absolute;
+    right: 4rem;
+    color: gray;
+}
+#form-search > input {
+    padding-right: 2rem;
+}
